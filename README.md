@@ -141,6 +141,8 @@ The application simulates API key–based authentication to reflect real-world R
 ### Notes
 JSONPlaceholder does not require authentication; however, this simulation follows industry best practices for secure API access.
 
+* **API Key Handling**
+  ![Api Test Post](screenshots/Api_Test.png)
 ---
 
 ## 📝 Notes
@@ -154,8 +156,8 @@ JSONPlaceholder does not require authentication; however, this simulation follow
 ## ✅ Status
 
 * ✔ Task 1 – HTTP Requests Handling **Completed**
-* ✔ Postman Testing **Completed**
-* 🔄 Next: Services Layer, Error Handling, and CLI Enhancements
+* ✔ Task 2 – Headers & API Key Handling (Completed)
+* 🔄 Upcoming: Services Layer, Error Handling, and CLI Enhancements
 
 ---
 
