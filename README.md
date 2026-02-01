@@ -125,6 +125,22 @@ including server-generated IDs returned for POST requests.
 * **DELETE Post**
   ![DELETE Post](screenshots/delete_post.png)
 
+## 🔐 Task 2 – Headers & API Key Handling
+
+The application simulates API key–based authentication to reflect real-world REST API consumption.
+
+### Implementation Details
+- API key is defined centrally in `config.py`
+- The key is injected into requests via the `Authorization` header
+- Business logic does not directly reference or hardcode the API key
+
+### Headers Used
+- `Content-Type: application/json`
+- `Authorization: Bearer <API_KEY>`
+
+### Notes
+JSONPlaceholder does not require authentication; however, this simulation follows industry best practices for secure API access.
+
 ---
 
 ## 📝 Notes
