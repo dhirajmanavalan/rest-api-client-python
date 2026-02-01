@@ -141,8 +141,28 @@ The application simulates API key–based authentication to reflect real-world R
 ### Notes
 JSONPlaceholder does not require authentication; however, this simulation follows industry best practices for secure API access.
 
-* **API Key Handling**
-  ![Api Test Post](screenshots/Api_Test.png)
+## 📦 Task 3 – JSON Request & Response Handling (Postman)
+
+Postman was used to validate JSON request payloads and inspect API responses for Task 3.
+
+### Validations Performed
+- Verified correct JSON structure for POST and PUT requests
+- Confirmed required fields (`title`, `body`, `userId`) in request payloads
+- Inspected API responses to understand response structure
+
+### Notes on Validation
+Although JSONPlaceholder accepts empty fields, input validation is enforced in the Python services layer before API requests are sent.
+
+### Screenshots
+- POST – Valid JSON Payload  
+  ![Task 3 Create Valid](screenshots/task3_create_valid.png)
+
+- POST – Invalid JSON Payload  
+  ![Task 3 Create Invalid](screenshots/task3_create_invalid.png)
+
+- GET – Response Parsing  
+  ![Task 3 Get Parse](screenshots/task3_get_parse.png)
+
 ---
 
 ## 📝 Notes
@@ -157,8 +177,8 @@ JSONPlaceholder does not require authentication; however, this simulation follow
 
 * ✔ Task 1 – HTTP Requests Handling **Completed**
 * ✔ Task 2 – Headers & API Key Handling (Completed)
-* 🔄 Upcoming: Services Layer, Error Handling, and CLI Enhancements
-
+* ✔ Task 3 – JSON Request & Response Handling (Completed)
+* 🔄 Next: Task 4 – HTTP Response Codes & Robust Error Handling
 ---
 
 ## 💡 Final Result
