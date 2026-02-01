@@ -171,6 +171,30 @@ Although JSONPlaceholder accepts empty fields, input validation is enforced in t
 * POST, PUT, and DELETE operations **do not persist data** on the server.
 * API behavior simulates real-world REST APIs.
 
+## 🚦 Task 4 – HTTP Response Codes & Error Handling (Postman)
+
+Postman was used to inspect HTTP response codes and validate API behavior.
+
+### Tested Scenarios
+- 200 OK – Successful GET request
+- 201 Created – Successful POST request
+- 404 Not Found – Invalid resource ID
+- 400 Bad Request – Conceptual validation case
+
+### Notes
+JSONPlaceholder does not strictly enforce validation errors.  
+Client-side validation and error handling are implemented in Python.
+
+### Screenshots
+- GET 200 OK  
+  ![Task 4 200](screenshots/task4_200_ok.png)
+
+- GET 404 Not Found  
+  ![Task 4 404](screenshots/task4_404_not_found.png)
+
+- POST 201 Created  
+  ![Task 4 201](screenshots/task4_201_created.png)
+
 ---
 
 ## ✅ Status
@@ -178,7 +202,8 @@ Although JSONPlaceholder accepts empty fields, input validation is enforced in t
 * ✔ Task 1 – HTTP Requests Handling **Completed**
 * ✔ Task 2 – Headers & API Key Handling (Completed)
 * ✔ Task 3 – JSON Request & Response Handling (Completed)
-* 🔄 Next: Task 4 – HTTP Response Codes & Robust Error Handling
+* ✔ Task 4 – HTTP Response Codes Handling (Completed)
+* 🔄 Next: 5 - Error Handling
 ---
 
 ## 💡 Final Result

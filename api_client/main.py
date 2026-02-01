@@ -6,6 +6,8 @@ from services import (
     delete_post_service
 )
 
+from exceptions import APIClientError
+
 
 while True:
     print("\nChoose an option:")
@@ -17,56 +19,63 @@ while True:
     print("6. Exit")
 
     choice = input("Enter your choice (1-6): ")
+    
+    try:
 
-    if choice == "1":
-        posts = fetch_all_posts()
-        if posts:
-            for post in posts:
-                print(f"ID: {post['id']} | Title: {post['title']}")
+        if choice == "1":
+            posts = fetch_all_posts()
+            if posts:
+                for post in posts:
+                    print(f"ID: {post['id']} | Title: {post['title']}")
+            else:
+                print("Failed to fetch posts")
+
+        elif choice == "2":
+            post_id = int(input("Enter post ID: "))
+            post = fetch_posts_by_id(post_id)
+            if post:
+                print(f"\nTitle: {post['title']}")
+                print(f"Body: {post['body']}")
+            else:
+                print("Post not found")
+
+        elif choice == "3":
+            title = input("Enter title: ")
+            body = input("Enter body: ")
+            result = create_post_service(title, body)
+
+            if "error" in result:
+                print(f"Error: {result['error']}")
+            else:
+                print(f"Post created successfully with ID: {result['id']}")
+
+        elif choice == "4":
+            post_id = int(input("Enter post ID: "))
+            title = input("Enter title: ")
+            body = input("Enter body: ")
+            result = update_post_service(post_id, title, body)
+
+            if "error" in result:
+                print(f"Error: {result['error']}")
+            else:
+                print("Post updated successfully")
+
+        elif choice == "5":
+            post_id = int(input("Enter post ID: "))
+            success = delete_post_service(post_id)
+            if success:
+                print("Post deleted successfully")
+            else:
+                print("Failed to delete post")
+
+        elif choice == "6":
+            print("Exiting application")
+            break
+
         else:
-            print("Failed to fetch posts")
-
-    elif choice == "2":
-        post_id = int(input("Enter post ID: "))
-        post = fetch_posts_by_id(post_id)
-        if post:
-            print(f"\nTitle: {post['title']}")
-            print(f"Body: {post['body']}")
-        else:
-            print("Post not found")
-
-    elif choice == "3":
-        title = input("Enter title: ")
-        body = input("Enter body: ")
-        result = create_post_service(title, body)
-
-        if "error" in result:
-            print(f"Error: {result['error']}")
-        else:
-            print(f"Post created successfully with ID: {result['id']}")
-
-    elif choice == "4":
-        post_id = int(input("Enter post ID: "))
-        title = input("Enter title: ")
-        body = input("Enter body: ")
-        result = update_post_service(post_id, title, body)
-
-        if "error" in result:
-            print(f"Error: {result['error']}")
-        else:
-            print("Post updated successfully")
-
-    elif choice == "5":
-        post_id = int(input("Enter post ID: "))
-        success = delete_post_service(post_id)
-        if success:
-            print("Post deleted successfully")
-        else:
-            print("Failed to delete post")
-
-    elif choice == "6":
-        print("Exiting application")
-        break
-
-    else:
-        print("Invalid choice. Try again.")
+            print("Invalid choice. Try again.")
+        
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+    except APIClientError as e:
+        print(f"{e}")

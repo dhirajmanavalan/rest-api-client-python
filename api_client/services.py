@@ -6,6 +6,26 @@ from client import (
     delete_post
 )
 
+from exceptions import(
+    BadRequestError,
+    UnauthorizedError,
+    NotFoundError,
+    ServerError
+)
+
+def _handle_status(response):
+    if response.status_code in (200, 201):
+        return
+    if response.status_code == 400:
+        raise BadRequestError("Bad request. Please check input.")
+    if response.status_code == 401:
+        raise UnauthorizedError("Unauthorized. Check API key.")
+    if response.status_code == 404:
+        raise NotFoundError("Resource not found.")
+    if response.status_code >= 500:
+        raise ServerError("Server error. Try later.")
+    raise ServerError("Unexpected response from server.")
+
 def validate_post_data(title: str , body: str):
     if not title or not title.strip():
         return False, 'Title Cannot be Empty'
@@ -17,16 +37,13 @@ def validate_post_data(title: str , body: str):
 
 def fetch_all_posts():
     response = get_all_posts()
-    if response.status_code == 200:
-        posts = response.json()
-        return posts[:3]
-    return None
+    _handle_status(response)
+    return response.json()[:3]
 
-def fetch_posts_by_id(post_id : int):
+def fetch_posts_by_id(post_id: int):
     response = get_post_id(post_id)
-    if response.status_code == 200:
-        return response.json()
-    return None
+    _handle_status(response)
+    return response.json()
 
 def create_post_service(title : str , body : str):
     is_valid , error = validate_post_data(title,body)
@@ -41,9 +58,8 @@ def create_post_service(title : str , body : str):
     
     response = create_post(payload)
     
-    if response.status_code == 201:
-        return response.json()
-    return {'error' : 'failed to create post'}
+    _handle_status(response)
+    return response.json()
 
 def update_post_service(post_id: int, title : str, body : str):
     is_valid, error = validate_post_data(title, body)
@@ -57,15 +73,12 @@ def update_post_service(post_id: int, title : str, body : str):
     }
 
     response = update_post(post_id, payload)
-    if response.status_code == 200:
-        return response.json()
-
-    return {"error": "Failed to update post"}
+    _handle_status(response)
+    return response.json()
 
 def delete_post_service(post_id : int):
     response = delete_post(post_id)
-    if response.status_code == 200:
-        return True
-    return False
+    _handle_status(response)
+    return True
 
     
