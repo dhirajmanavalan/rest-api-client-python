@@ -228,20 +228,53 @@ The application handles both cases gracefully and displays a user-friendly messa
 - Invalid HTTP Method / Unsupported Endpoint  
   ![Task 5 Invalid Method](screenshots/task5_invalid_http_method.png)
 
+## 🖥️ Task 6 – Command Line Interface (CLI)
+
+The application provides a menu-driven command-line interface that allows users to
+interact with the REST API in a controlled and user-friendly manner.
+
+### Available Operations
+- Fetch all posts
+- Fetch a post by ID
+- Create a new post
+- Update an existing post
+- Delete a post
+- Exit the application
+
+### CLI Behavior
+- Runs continuously until the user selects the Exit option
+- Validates user input to prevent crashes
+- Delegates business logic to the services layer
+- Handles all errors gracefully with user-friendly messages
+
+This design ensures clear separation of concerns and mimics real-world API client tools.
+
 ---
 
 ## ✅ Status
 
 * ✔ Task 1 – HTTP Requests Handling **Completed**
-* ✔ Task 2 – Headers & API Key Handling (Completed)
-* ✔ Task 3 – JSON Request & Response Handling (Completed)
-* ✔ Task 4 – HTTP Response Codes Handling (Completed)
-* 🔄 Next: 5 - Error Handling
+* ✔ Task 2 – Headers & API Key Handling **Completed**
+* ✔ Task 3 – JSON Request & Response Handling **Completed**
+* ✔ Task 4 – HTTP Response Codes & Error Handling **Completed**
+* ✔ Task 5 – Advanced Error Handling **Completed**
+* ✔ Task 6 – Command Line Interface (CLI) **Completed**
 ---
 
 ## 💡 Final Result
 
-This project demonstrates how a Python-based REST API client interacts with third-party APIs using
-industry-standard practices and tools.
+This project demonstrates a complete, production-style Python REST API client that:
+
+- Uses a clean, modular architecture
+- Implements CRUD operations with proper HTTP semantics
+- Simulates secure API key handling
+- Handles all error scenarios gracefully
+- Provides a robust, menu-driven CLI interface
+- Includes comprehensive Postman-based API testing
+- Follows professional Git workflows and documentation standards
+
+The project closely mirrors how real-world backend services and automation scripts
+consume third-party REST APIs.
+
 
 ---
