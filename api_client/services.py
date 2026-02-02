@@ -10,7 +10,9 @@ from exceptions import(
     BadRequestError,
     UnauthorizedError,
     NotFoundError,
-    ServerError
+    ServerError,
+    
+    MethodNotAllowedError
 )
 
 def _handle_status(response):
@@ -24,7 +26,8 @@ def _handle_status(response):
         raise NotFoundError("Resource not found.")
     if response.status_code >= 500:
         raise ServerError("Server error. Try later.")
-    raise ServerError("Unexpected response from server.")
+    
+    raise ServerError(f"Unexpected server response (status code: {response.status_code})")
 
 def validate_post_data(title: str , body: str):
     if not title or not title.strip():
@@ -38,8 +41,13 @@ def validate_post_data(title: str , body: str):
 def fetch_all_posts():
     response = get_all_posts()
     _handle_status(response)
-    return response.json()[:3]
-
+    
+    try:
+        return response.json()
+    
+    except ValueError:
+        raise ServerError("Invalid JSON response from server.")
+    
 def fetch_posts_by_id(post_id: int):
     response = get_post_id(post_id)
     _handle_status(response)

@@ -77,5 +77,9 @@ while True:
         
     except ValueError:
         print("Invalid input. Please enter a number.")
+        
     except APIClientError as e:
         print(f"{e}")
+        
+    except Exception:
+        print("Unexpected application error. Please try again.")

@@ -195,6 +195,39 @@ Client-side validation and error handling are implemented in Python.
 - POST 201 Created  
   ![Task 4 201](screenshots/task4_201_created.png)
 
+## 🛡️ Task 5 – Advanced Error Handling
+
+Task 5 focuses on making the application resilient by handling all failure scenarios gracefully,
+ensuring the program never crashes due to user mistakes, network issues, or unexpected API behavior.
+
+### Handled Error Scenarios
+
+- **Network failures**  
+  Gracefully handled when the API is unreachable or internet connectivity is lost.
+
+- **Connection timeouts**  
+  Requests that exceed the configured timeout return a friendly timeout message.
+
+- **Invalid user input**  
+  Non-numeric IDs and invalid inputs are validated at the CLI level.
+
+- **Unexpected server responses**  
+  Unknown or unsupported HTTP status codes are safely handled without crashing.
+
+- **Invalid HTTP methods / Unsupported endpoints**  
+  Unsupported operations such as `DELETE /posts` are handled gracefully.
+
+### Notes on API Behavior
+
+JSONPlaceholder is a mock API and does not consistently return `405 Method Not Allowed`.
+For unsupported HTTP methods, it returns `404 Not Found` instead.
+The application handles both cases gracefully and displays a user-friendly message.
+
+### Postman Validation
+
+- Invalid HTTP Method / Unsupported Endpoint  
+  ![Task 5 Invalid Method](screenshots/task5_invalid_http_method.png)
+
 ---
 
 ## ✅ Status

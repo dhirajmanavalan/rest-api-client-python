@@ -21,3 +21,6 @@ class ServerError(APIClientError):
 
 class BadRequestError(APIClientError):
     """Raised for 400 responses."""
+    
+class MethodNotAllowedError(APIClientError):
+    """Raised for 405 Method Not Allowed responses."""
